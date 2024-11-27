@@ -1,39 +1,15 @@
 <div [formGroup]="form" class="course-details-form">
-  <!-- container che ci permette di customizzare un form -->
-  <!-- la proprietà floatLabel ha 2 opzioni: always la label è sempre in alto, auto ci si sposta quando clicco sull'elemento. di default è auto-->
+  <!-- INPUT mat-form-field -->
+  <!-- title -->
   <mat-form-field floatLabel="auto">
-    <!-- elemento html, con matInput directive, un placeholder ed un formControlName (è angular) che ci permette di collegarlo al formBulder nel .ts -->
-    <!-- per avere il placeholder che diventa label quando si clicca va aggiunta la mat-label, il testo può essere diverso tra label e placeholder, quello della label sovrascrive il placeholder quando non si clicca -->
-    <!-- l'asterisco del required viene messo perchè c'è il validator required -->
+    <!-- label e input -->
     <mat-label>Course title</mat-label>
     <input matInput placeholder="Course title" formControlName="title" #title />
 
-    <!-- con le direttive matPrefix e matSuffix posso aggiungere dei suffissi o dei prefissi nel campo di input -->
-    <!-- utile per esempio quando chiedo un numero di telefono -->
-    <!-- <span matPrefix>+39</span> -->
-    <!-- utile per esempio quando va inserita una valuta -->
-    <!-- <span matSuffix>.00</span> -->
-    <!-- con la matHint directive si può inserire un testo di suggerimento -->
-    <!-- <mat-hint align="end">max 60 characters</mat-hint> -->
-    <!-- oppure posso crearlo dinamico, col conteggio dei caratteri inseriti -->
-    <!-- per farlo metto una template reference all'input e ne uso il value e la sua lunghezza-->
-
+    <!-- Hint -->
     <mat-hint align="end">{{ title.value.length }} / 60</mat-hint>
-    <!-- questa è una cosa che ho inventato io, non serve perchè c'è l'elemento mat-error che lo fa e pure meglio!!! -->
-    <!-- <mat-hint align="end" *ngIf="title.value.length <= 60; else superato"
-      >{{ title.value.length }} / 60</mat-hint
-    >
 
-    <ng-template #superato>
-      <mat-hint
-        ><span style="color: red">Hai superato i 60 caratteri</span></mat-hint
-      >
-    </ng-template> -->
-    <!-- la gestione degli errori si fa tramite mat-error -->
-    <!-- nel .ts ci sono dei metodi get che ritornano il control dei campi del form -->
-    <!-- uso il getter del title, chiamato courseTitle (mi ritorna l'oggetto title con varie proprietà relative al campo del form fra le quali la proprietà errors che è un oggetto che si popola con i vari errori quando presenti) e richiamo l'oggetto errors -->
-    <!-- gli errori che controllo sono quelli messi  nel FormBuilder, quindi required, minlength e maxlength-->
-    <!-- se non c'è l'errore non c'è la proprietà col nome dell'errore quindi devo utilizzare il ? prima della proprietà -->
+    <!-- Gestione errori -->
     @if (courseTitle.errors?.required) {
     <mat-error>Title is required</mat-error>}
     <!--  -->
@@ -46,14 +22,13 @@
     }
   </mat-form-field>
 
-  <!-- abbiamo 2 diversi tipi di appearance fill e outline, fill è quella di default -->
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Course title</mat-label>
-    <input matInput placeholder="Course title" formControlName="title" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Course title</mat-label>
-    <input matInput placeholder="Course title" formControlName="title" />
-  </mat-form-field> -->
+  <!-- RADIO BUTTON mat-radio-group -->
+  <!--  courseType -->
+  <mat-radio-group class="course-type" formControlName="courseType">
+    <!-- aggiungiamo i radio button con il value che devono ritornare -->
+    <!-- un mat-radio-button può essere disabilitato [disabled]="true" -->
+    <!-- <mat-radio-button [disabled]="true" value="free">Free</mat-radio-button> -->
+    <mat-radio-button value="free">Free</mat-radio-button>
+    <mat-radio-button value="premium">Premium</mat-radio-button>
+  </mat-radio-group>
 </div>
