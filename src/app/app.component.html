@@ -26,32 +26,6 @@
     <button mat-icon-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
-
-    <!-- aggiungiamo elementi di navigazione alla toolbar con dropdown menu -->
-    <!-- anchor per triggerare il dropdown menu con direttiva mat-button e [matMenuTriggerFor]="nome reference dropdown menu da togglare" -->
-    <a mat-button [matMenuTriggerFor]="dropdown">
-      <mat-icon>view_list</mat-icon>
-    </a>
-    <!-- posso utilizzare anche un button -->
-    <!-- <button mat-button [matMenuTriggerFor]="dropdown">screens</button> -->
-
-    <!-- creo il dropdown menu con template reference per il nome-->
-    <mat-menu #dropdown>
-      <!-- il button all'interno del dropdown menu deve avere la direttiva mat-menu-item per essere ben formattato-->
-      <button mat-menu-item routerLink="/">Courses</button>
-      <button mat-menu-item routerLink="/about">About</button>
-    </mat-menu>
-
-    <!-- anchor con direttiva mat-button -->
-    <a mat-button routerLink="/about">
-      <mat-icon>person_add</mat-icon>
-      <span>Register</span>
-    </a>
-
-    <a mat-button>
-      <mat-icon>account_circle</mat-icon>
-      <span>Login</span>
-    </a>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
