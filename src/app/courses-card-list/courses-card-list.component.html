@@ -1,1 +1,41 @@
+<!-- qui impostiamo la card per ogni corso della lista courses -->
+<!-- courses è un array di Course ottenuto da un Oservable in home.component.ts e passato a questo componente tramite @Input property-->
+<!-- creiamo la mat-card e gli applichiamo la direttiva strutturale *ngFor per i courses -->
+<!-- con la classe mat-elevation-znumero possiamo aumentare o diminuire o rendere più morbida l'ombra della card, più è alto il numero più l'ombra è marcata -->
+<mat-card class="course-card mat-elevation-z7" *ngFor="let course of courses">
+  <!-- ogni card ha al suo interno un header, in cui definiamo un titolo tramite direttiva mat-card-title -->
+  <mat-card-header>
+    <mat-card-title>
+      {{ course.description }}
+    </mat-card-title>
+  </mat-card-header>
 
+  <!-- nel body della card mettiamo una immagine che deve avere la direttiva mat-card-image -->
+  <img mat-card-image [src]="course.iconUrl" />
+
+  <!-- aggiungiamo una descrizione del corso con un elemento mat-card-content -->
+  <!-- nel content possiamo aggiungere quello che vogliamo, anche un altro componente -->
+  <mat-card-content>
+    <p>{{ course.longDescription }}</p>
+  </mat-card-content>
+
+  <!-- per aggiungere le actions che vogliamo siano sviluppate dalla card, utilizziamo l'elemento mat-card-actions -->
+  <!-- la classe css course-actions allinea il testo al centro -->
+  <mat-card-actions class="course-actions">
+    <!-- all'interno mettiamo 2 button e ne definiamo il colore e applichiamo la direttiva mat-raised-button che a differenza della mat-button mi dà un button più evidenziato e con ombra -->
+    <!-- questo button ci deve far navigare verso una rotta che renderizza il componente CourseComponent, quindi applichiamo la direttiva [routerLink]="['path variable', 'path variable2']" -->
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['courses', course.id]"
+    >
+      VIEW COURSE
+    </button>
+
+    <!-- il secondo button fa apportare modifiche al corso, gli diamo un color accent -->
+    <!-- al click di questo viene chiamato il metodo editCourse() al quale va passato il Course ed aprirà una mat-dialog-->
+    <button mat-raised-button color="accent" (click)="editCourse(course)">
+      EDIT COURSE
+    </button>
+  </mat-card-actions>
+</mat-card>

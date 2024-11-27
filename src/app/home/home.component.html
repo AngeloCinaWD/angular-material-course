@@ -13,7 +13,19 @@
   <!-- vogliamo creare 2 gruppi di corsi in base alla categoria -->
   <mat-tab-group>
     <!-- all'interno definiamo i 2 tab che saranno visibili uno alla volta, per ognuno definiamo la label che sarà visibile per distinguerli -->
-    <mat-tab label="Beginners"></mat-tab>
-    <mat-tab label="Advanced"></mat-tab>
+    <!-- le material cards sono molto utili per distinguere un elemento da un altro, hanno un'ombra molto marcata per evidenziare la separazione -->
+    <mat-tab label="Beginners">
+      <!-- all'interno di ogni tab mostreremo i corsi separati l'uno dall'altro con una card material -->
+      <!-- la card è definita all'interno dell'html del componente CoursesCardListComponent, in questo ci sarà un *ngFor di una mat-card-->
+      <!-- tutti i corsi di una certa categoria vengono passati tramite @Input property al componente CoursesCardListComponent -->
+      <courses-card-list
+        [courses]="beginnerCourses$ | async"
+      ></courses-card-list>
+    </mat-tab>
+    <mat-tab label="Advanced">
+      <courses-card-list
+        [courses]="advancedCourses$ | async"
+      ></courses-card-list>
+    </mat-tab>
   </mat-tab-group>
 </div>
