@@ -9,7 +9,6 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
   standalone: false,
 })
 export class CoursesCardListComponent implements OnInit {
-  // property che riceve tutti i corsi di una determinata categoria
   @Input()
   courses: Course[];
 

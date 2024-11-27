@@ -2,22 +2,13 @@
   <div class="header">
     <h2 class="title">All Courses</h2>
 
-    <!-- un fab button è un tipico button circolare con icona al centro -->
     <button mat-mini-fab routerLink="/add-new-course">
       <mat-icon class="add-course-btn">add</mat-icon>
     </button>
   </div>
 
-  <!-- TABS -->
-  <!-- Angular Material tabs organize content into separate views where only one view can be visible at a time. Each tab's label is shown in the tab header and the active tab's label is designated with the animated ink bar. When the list of tab labels exceeds the width of the header, pagination controls appear to let the user scroll left and right across the labels. -->
-  <!-- vogliamo creare 2 gruppi di corsi in base alla categoria -->
   <mat-tab-group>
-    <!-- all'interno definiamo i 2 tab che saranno visibili uno alla volta, per ognuno definiamo la label che sarà visibile per distinguerli -->
-    <!-- le material cards sono molto utili per distinguere un elemento da un altro, hanno un'ombra molto marcata per evidenziare la separazione -->
     <mat-tab label="Beginners">
-      <!-- all'interno di ogni tab mostreremo i corsi separati l'uno dall'altro con una card material -->
-      <!-- la card è definita all'interno dell'html del componente CoursesCardListComponent, in questo ci sarà un *ngFor di una mat-card-->
-      <!-- tutti i corsi di una certa categoria vengono passati tramite @Input property al componente CoursesCardListComponent -->
       <courses-card-list
         [courses]="beginnerCourses$ | async"
       ></courses-card-list>
