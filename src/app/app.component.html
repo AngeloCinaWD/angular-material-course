@@ -1,10 +1,50 @@
-<!-- Per aggiungere angular material ad un progetto ng add @angular/material -->
-<!-- questo comando provvede all'installazione di tutte le dipendenze necessarie nel package.json-->
-<!-- inoltre installa un angular material theme, crea un file styles.scss in src-->
-<!-- aggiunge qualche  typography all'app in index.html, ad esempio il roboto font e le icone di material-->
+<!-- creiamo un navigation system -->
+<!-- con barra laterale a comparsa, mat-sidenav-container -->
+<!-- questo è il container degli elementi che compaiono a lato-->
+<!-- vogliamo che il container occupi la full viewport del browser, attributo fullscreen -->
+<mat-sidenav-container fullscreen>
+  <!-- per avere accesso ad un elemento in tutto il template gli creo una template reference -->
+  <!-- mi serve una reference alla sidenav in modo da poterla aprire quando mi serve -->
+  <mat-sidenav #sidenav>
+    <!-- per gli elementi di navigazione utilizzo i mat-nav-list -->
+    <!-- per fare in modo che la sidenav si chiuda quando clicco su uno degli elementi di navigazione devo intercettare qui il click event che si triggera al click di uno qualsiasi degli elementi al suo interno-->
+    <!-- si triggera in qualsiasi punto dello schermo che clicco, in questo caso, al di fuori di un elemento di navigazione, si chiude la sidenav e non navigo verso un'altra rotta -->
+    <mat-nav-list (click)="sidenav.close()">
+      <!-- ogni elemento di navigazione è un anchor html con la direttiva mat-list-item -->
+      <!-- per navigare utilizziamo la direttiva di angular routerLink, la route per tutti i corsi è la home -->
+      <a mat-list-item routerLink="/">
+        <!-- mettiamo un'icona ed un testo -->
+        <mat-icon>library_books</mat-icon>
+        <span>Courses</span>
+      </a>
 
-<!-- proviamo uno slider di material, ricordarsi sempre di importare il module -->
-<!-- setto il valore minimo ed il valore massimo, lo step e il valore iniziale -->
-<mat-slider min="1" max="100" step="1">
-  <input matSliderThumb value="50" />
-</mat-slider>
+      <!-- aggiungiamo altri elementi di navigazione -->
+
+      <a mat-list-item routerLink="about">
+        <mat-icon>question_answer</mat-icon>
+        <span>About</span>
+      </a>
+
+      <a mat-list-item>
+        <mat-icon>person_add</mat-icon>
+        <span>Register</span>
+      </a>
+
+      <a mat-list-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- setto il colore color="" -->
+  <mat-toolbar color="primary">
+    <!-- inserisco un button html con direttiva mat-icon-button -->
+    <!-- inserisco nel button un mat-icon in cui specifico il nome dell'icona da visualizzare -->
+    <!-- al click di questo button si deve aprire la side-nav con gli elementi per la navigazione -->
+    <!-- per aprire la sidenav al click chiamo il metodo .open() della sidenav-->
+    <button mat-icon-button (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

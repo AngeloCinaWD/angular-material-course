@@ -33,4 +33,6 @@ Note: **make sure to use command npm start and not ng serve, as npm start adds a
 
 ## [Angular Material](https://material.angular.io/)
 
-## [Material Icons](https://fonts.google.com/icons)
+## [Material Icons Google Fonts](https://fonts.google.com/icons)
+
+## [Material Icons List](https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/)

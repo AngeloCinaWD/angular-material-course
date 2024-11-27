@@ -38,7 +38,6 @@ import { CreateCourseStep2Component } from "./create-course/create-course-step-2
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatNativeDateModule } from "@angular/material/core";
-// modulo per far funzionare lo slider
 import { MatSliderModule } from "@angular/material/slider";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -66,8 +65,6 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     VirtualScrollingComponent,
   ],
   bootstrap: [AppComponent],
-  // per far funzionare un componente di Angular Material ne dobbiamo importare il modulo
-  // vanno importati a mano non li importo il comando di installazione di angualar material
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -92,7 +89,6 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     MatCheckboxModule,
     DragDropModule,
     MatRadioModule,
-    // registrazione del modulo per gli slider negli imports
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
