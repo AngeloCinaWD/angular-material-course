@@ -26,4 +26,10 @@ export class CreateCourseStep1Component {
     console.log(this.form.controls["title"]);
     return this.form.controls["title"];
   }
+
+  get courseType() {
+    console.log(this.form.controls["courseType"]);
+
+    return this.form.controls["courseType"];
+  }
 }

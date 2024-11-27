@@ -25,10 +25,9 @@
   <!-- RADIO BUTTON mat-radio-group -->
   <!--  courseType -->
   <mat-radio-group class="course-type" formControlName="courseType">
-    <!-- aggiungiamo i radio button con il value che devono ritornare -->
-    <!-- un mat-radio-button può essere disabilitato [disabled]="true" -->
-    <!-- <mat-radio-button [disabled]="true" value="free">Free</mat-radio-button> -->
     <mat-radio-button value="free">Free</mat-radio-button>
     <mat-radio-button value="premium">Premium</mat-radio-button>
   </mat-radio-group>
+
+  <span>{{ courseType.value }}</span>
 </div>
