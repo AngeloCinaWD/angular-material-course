@@ -36,3 +36,7 @@ Note: **make sure to use command npm start and not ng serve, as npm start adds a
 ## [Material Icons Google Fonts](https://fonts.google.com/icons)
 
 ## [Material Icons List](https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/)
+
+## [Fix problem mat-elevation-z class](https://github.com/angular/components/issues/26094#issuecomment-1961507551)
+
+## [Fix problem mat-elevation-z class 2](https://www.udemy.com/course/angular-material-course/learn/lecture/28651196#questions/19429536)

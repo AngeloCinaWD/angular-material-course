@@ -1,24 +1,14 @@
-<!-- Angular Material's stepper provides a wizard-like workflow by dividing content into logical steps. -->
 <div class="create-course-panel data-form">
   <h2 class="title">Create New Course</h2>
 
-  <!-- il form avrà 2 step -->
-  <!-- stepper horizontal, il vertical funziona allo stesso modo -->
-  <!-- la direttiva linear true dice che per accedere al passaggio successivo bisogna aver completato il precedente -->
-  <!-- lo stepper contiene dei button da cliccare con delle label, la posizione delle label rispetto al bottom viene decisa con la proprietà labelPosition  -->
   <mat-horizontal-stepper
-    class="mat-elevation-z5"
+    class="mat-mdc-elevation-specific mat-elevation-z5"
     [linear]="true"
     labelPosition="bottom"
   >
-    <!-- aggiungiamo gli step, all'interno definiamo la label con un ng-template con direttiva matStepLabel -->
-    <!-- con la proprietà errorMessage facciamo in modo di mostrare un messaggio in caso di errore di compilazione dello step -->
     <mat-step errorMessage="Course details in error">
       <ng-template matStepLabel>Course Details</ng-template>
-      <!-- per il corpo dello step utilizziamo un component CreateCourseStep1Component -->
       <create-course-step-1></create-course-step-1>
-      <!-- diamo la possibilità all'utente di switchare fra gli step -->
-      <!-- div con button con proprietà matStepperNext available quando lo step è completato-->
       <div class="stepper-buttons">
         <button mat-raised-button color="primary" matStepperNext>
           Add Course Lessons
@@ -28,10 +18,8 @@
 
     <mat-step errorMessage="Course lessons in error">
       <ng-template matStepLabel>Course Lessons</ng-template>
-      <!-- per il corpo dello step utilizziamo un component CreateCourseStep1Component -->
       <create-course-step-2></create-course-step-2>
 
-      <!-- 2 buttons: uno per tornare indietro ed uno per terminare la registrazione -->
       <div class="stepper-buttons">
         <button mat-raised-button matStepperPrevious>Back</button>
 
