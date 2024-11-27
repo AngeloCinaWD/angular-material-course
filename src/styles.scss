@@ -2,5 +2,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 // ci sono 4 temi predefiniti, posso cambiarlo andando a cambiare questa path alla fine e scegliere il .css che voglio
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
-// @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "@angular/material/prebuilt-themes/indigo-pink.css";
+// così funziona lo stesso e posso avere l'autocompletamento mentre scrivo
+@import "../node_modules/@angular/material/prebuilt-themes/azure-blue.css";
