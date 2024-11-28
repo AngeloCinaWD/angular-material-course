@@ -47,31 +47,30 @@
 
   <!-- DATEPICKER -->
   <!-- releasedAt -->
-  <!-- un datepicker material è wrappato all'interno di un mat-form-field, gestisco l'appearence -->
   <mat-form-field appearance="fill">
-    <!-- un datepicker è costituito da 2 parti  -->
-    <!-- un input dove l'utente può inserire una data manualmente e l'altra il datepicker dove si seleziona la data con un calendar popup che si apre cliccando su un'icona del calendario-->
     <mat-label>Release date</mat-label>
-    <!-- l'input deve essere collegato al popup, in modo da poterne prendere il value selezionato, tramite direttiva material [matDatepicker]="referenceDaLinkare" -->
     <input
       matInput
       formControlName="releasedAt"
       placeholder="Release date"
       [matDatepicker]="releasedAtPicker"
     />
-    <!-- per linkare l'input ed il popup in modo da aprirlo e chiuderlo si utilizza il mat-datepicker-toggle -->
-    <!-- gli diamo la direttiva matSuffix per visualizzare il toggle all'interno dell'input alla fine e con la direttiva [for]="referenceDaTogglare" gli indichiamo l'elemento che deve essere togglato al click -->
-    <!-- di default l'icona è il calendario -->
     <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
-      <!-- per customizzare l'icona del toggle utilizzo una mat-icon con property  matDatepickerToggleIcon-->
-      <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
     </mat-datepicker-toggle>
-    <!-- il calendar popup è contenuto in un elemento mat-datepicker, gli diamo una reference template -->
-    <!-- il metodo dateClass non va sottoscritto, va solo indicato -->
     <mat-datepicker #releasedAtPicker [dateClass]="dateClass"> </mat-datepicker>
 
-    <mat-error *ngIf="releasedAt.errors?.required"
-      >A released date is required</mat-error
-    >
+    <mat-error *ngIf="releasedAt.errors?.required">
+      A released date is required
+    </mat-error>
   </mat-form-field>
+
+  <!-- CHECK BOX -->
+  <!-- downloadsAllowed -->
+  <!-- le check boxes si wrappano in un mat-checkbox, setto un color e lo linko al formcontrol -->
+  <!-- un option è il disabled, cosa da vedere bene perchè se è linkato al formcontrol non funziona il disabled -->
+  <!-- altra option è [indeterminate]="true" -->
+  <!-- <mat-checkbox color="primary" formControlName="downloadsAllowed" [disabled]="true" [indeterminate]="true"> -->
+  <mat-checkbox color="primary" formControlName="downloadsAllowed">
+    Downloads allowed?
+  </mat-checkbox>
 </div>
