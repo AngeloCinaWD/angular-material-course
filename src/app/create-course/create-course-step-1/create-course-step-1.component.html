@@ -66,11 +66,29 @@
 
   <!-- CHECK BOX -->
   <!-- downloadsAllowed -->
-  <!-- le check boxes si wrappano in un mat-checkbox, setto un color e lo linko al formcontrol -->
-  <!-- un option è il disabled, cosa da vedere bene perchè se è linkato al formcontrol non funziona il disabled -->
-  <!-- altra option è [indeterminate]="true" -->
-  <!-- <mat-checkbox color="primary" formControlName="downloadsAllowed" [disabled]="true" [indeterminate]="true"> -->
   <mat-checkbox color="primary" formControlName="downloadsAllowed">
     Downloads allowed?
   </mat-checkbox>
+
+  <!-- TEXT AREA -->
+  <!-- longDescription -->
+  <!-- una text area material funziona in un mat-form-field, ci settiamo l'appearance -->
+  <mat-form-field appearance="outline">
+    <!-- è una text area html, ci si aggiunge la direttiva matInput, va linkata al formcontrol -->
+    <!-- per fare in modo che la text area si adatti alla lunghezza del testo contenuto si utilizza la direttiva cdkTextareaAutosize (non funziona setta altezza textarea il doppio del testo se viene passato un valore di defaul, se non passo niente funziona) -->
+    <textarea
+      matInput
+      placeholder="Description"
+      formControlName="longDescription"
+      cdkTextareaAutosize
+    ></textarea>
+
+    @if (longDescription.errors?.required) {
+    <mat-error>A description is required</mat-error>
+    }
+    <!--  -->
+    @else if (longDescription.errors?.minlength) {
+    <mat-error>A minimum length of 3 characters is required</mat-error>
+    }
+  </mat-form-field>
 </div>

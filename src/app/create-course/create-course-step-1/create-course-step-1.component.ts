@@ -22,6 +22,7 @@ export class CreateCourseStep1Component {
     courseType: ["premium", Validators.required],
     // boolean flag, il requiredTrue prevede che il valore ritornato sia per forza true (ad esempio se devo flaggare per accettare qualcosa)
     downloadsAllowed: [false, Validators.requiredTrue],
+    // non passo niente come default sennò non funziona cdkTextareaAutosize
     longDescription: ["", [Validators.required, Validators.minLength(3)]],
   });
 
@@ -60,5 +61,14 @@ export class CreateCourseStep1Component {
 
   get releasedAt() {
     return this.form.controls["releasedAt"];
+  }
+
+  get downloadsAllowed() {
+    return this.form.controls["downloadsAllowed"];
+  }
+
+  get longDescription() {
+    // console.log(this.form.controls["longDescription"]);
+    return this.form.controls["longDescription"];
   }
 }
