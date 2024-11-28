@@ -30,16 +30,11 @@
   </mat-radio-group>
 
   <!-- SELECT DROPDOWN -->
-  <!-- il select è gestito in un element material mat-select, da wrappare in mat-form-field in cui possiamo gestire l'appearance fill o outline-->
-  <!-- <mat-form-field appearance="fill"> -->
-  <!-- se passo un value di defaul al select la label sarà sempre flottante -->
-  <!-- <mat-label>Select a category</mat-label> -->
-  <!-- linkiamo  il select al formcontrol e mettiamo un placeholder ed un [(ngModel)], senza l'ng model il valore di default è passato dal formcontrol-->
-  <!-- <mat-select formControlName="category" placeholder="Select category" [(ngModel)]="valore_select"> -->
-  <!-- <mat-select formControlName="category" placeholder="Select category"> -->
-  <!-- le opzioni vengono aggiunte tramite elemento mat-option che ha la property value -->
-  <!-- se il select è required ed aggiungo un option senza value, mi restituisce un errore se non seleziono nulla -->
-  <!-- <mat-option>None</mat-option>
+  <!-- category -->
+  <mat-form-field appearance="fill">
+    <mat-label>Select a category</mat-label>
+    <mat-select formControlName="category" placeholder="Select category">
+      <mat-option>None</mat-option>
       <mat-option value="BEGINNER">Beginner</mat-option>
       <mat-option value="INTERMEDIATE">Intermediate</mat-option>
       <mat-option value="ADVANCED">Advanced</mat-option>
@@ -48,47 +43,31 @@
     <mat-error *ngIf="category.errors?.required"
       >Category is required</mat-error
     >
-  </mat-form-field> -->
-
-  <!-- OPTION GROUP,  QUANDO CI SONO TANTE OPTION SI POSSSONO DIVIDERE IN GRUPPI -->
-  <mat-form-field appearance="fill">
-    <mat-label>Select a category</mat-label>
-    <!-- se al mat-select aggiungo la direttiva multiple potrò selezionare più valori, il value restituito sarà un array di stringhe -->
-    <!-- devo però fare attenzione che se è selezionabile anche none ed è selezionata solo questa, con la mutpile choice, il value della select è un array contenente un undefined, quindi non avrei l'errore del required -->
-    <mat-select
-      formControlName="category"
-      placeholder="Select category"
-      multiple
-    >
-      <mat-option>None</mat-option>
-
-      <!-- si utilizza l'elemento mat-optgroup con una label property-->
-      <mat-optgroup label="Beginners">
-        <mat-option value="newprogramming">New to Programming</mat-option>
-        <mat-option value="newjavascript">New to Javascript</mat-option>
-        <mat-option value="newangular">New to Angular</mat-option>
-      </mat-optgroup>
-      <mat-optgroup label="Basic Knowledge">
-        <mat-option value="basicprogramming"
-          >Basic Knowledge of Programming</mat-option
-        >
-        <mat-option value="basicjavascript"
-          >Basic Knowledge of Javascript</mat-option
-        >
-        <mat-option value="basicangular">Basic Knowledge of Angular</mat-option>
-      </mat-optgroup>
-      <mat-option value="INTERMEDIATE">Intermediate</mat-option>
-      <mat-option value="ADVANCED">Advanced</mat-option>
-    </mat-select>
-
-    <mat-error *ngIf="category.errors?.required">
-      Category is required
-    </mat-error>
   </mat-form-field>
 
-  <!-- <span>valore select: {{ valore_select }}</span> -->
-  <!-- valore tramite getter category() -->
-  <!-- {{ category.errors | json }} -->
-  <!-- {{ category["value"][0] == null }} -->
-  <!-- {{ courseType.errors }} -->
+  <!-- DATEPICKER -->
+  <!-- releasedAt -->
+  <!-- un datepicker material è wrappato all'interno di un mat-form-field, gestisco l'appearence -->
+  <mat-form-field appearance="fill">
+    <!-- un datepicker è costituito da 2 parti  -->
+    <!-- un input dove l'utente può inserire una data manualmente e l'altra il datepicker dove si seleziona la data con un calendar popup che si apre cliccando su un'icona del calendario-->
+    <mat-label>Release date</mat-label>
+    <!-- l'input deve essere collegato al popup, in modo da poterne prendere il value selezionato, tramite direttiva material [matDatepicker]="referenceDaLinkare" -->
+    <input
+      matInput
+      formControlName="releasedAt"
+      placeholder="Release date"
+      [matDatepicker]="releasedAtPicker"
+    />
+    <!-- per linkare l'input ed il popup in modo da aprirlo e chiuderlo si utilizza il mat-datepicker-toggle -->
+    <!-- gli diamo la direttiva matSuffix per visualizzare il toggle all'interno dell'input alla fine e con la direttiva [for]="referenceDaTogglare" gli indichiamo l'elemento che deve essere togglato al click -->
+    <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+    </mat-datepicker-toggle>
+    <!-- il calendar popup è contenuto in un elemento mat-datepicker, gli diamo una reference template -->
+    <mat-datepicker #releasedAtPicker> </mat-datepicker>
+
+    <mat-error *ngIf="releasedAt.errors?.required"
+      >A released date is required</mat-error
+    >
+  </mat-form-field>
 </div>
