@@ -24,17 +24,71 @@
 
   <!-- RADIO BUTTON mat-radio-group -->
   <!--  courseType -->
-  <!-- passaggio valore con ngmodel, in questo modo non si ha il value iniziale passato tramite impostazioni formbuilder, il valore di default viene sovrascritto dalla proprietà con l'ngmodel che è null (se mettessi premium avrei di nuovo un valore di default) -->
-  <mat-radio-group
-    class="course-type"
-    formControlName="courseType"
-    [(ngModel)]="valore_radio"
-  >
+  <mat-radio-group class="course-type" formControlName="courseType">
     <mat-radio-button value="free">Free</mat-radio-button>
     <mat-radio-button value="premium">Premium</mat-radio-button>
   </mat-radio-group>
 
-  <span>Valore selezionato tramite radio button: {{ valore_radio }}</span>
-
   <!-- SELECT DROPDOWN -->
+  <!-- il select è gestito in un element material mat-select, da wrappare in mat-form-field in cui possiamo gestire l'appearance fill o outline-->
+  <!-- <mat-form-field appearance="fill"> -->
+  <!-- se passo un value di defaul al select la label sarà sempre flottante -->
+  <!-- <mat-label>Select a category</mat-label> -->
+  <!-- linkiamo  il select al formcontrol e mettiamo un placeholder ed un [(ngModel)], senza l'ng model il valore di default è passato dal formcontrol-->
+  <!-- <mat-select formControlName="category" placeholder="Select category" [(ngModel)]="valore_select"> -->
+  <!-- <mat-select formControlName="category" placeholder="Select category"> -->
+  <!-- le opzioni vengono aggiunte tramite elemento mat-option che ha la property value -->
+  <!-- se il select è required ed aggiungo un option senza value, mi restituisce un errore se non seleziono nulla -->
+  <!-- <mat-option>None</mat-option>
+      <mat-option value="BEGINNER">Beginner</mat-option>
+      <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+      <mat-option value="ADVANCED">Advanced</mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="category.errors?.required"
+      >Category is required</mat-error
+    >
+  </mat-form-field> -->
+
+  <!-- OPTION GROUP,  QUANDO CI SONO TANTE OPTION SI POSSSONO DIVIDERE IN GRUPPI -->
+  <mat-form-field appearance="fill">
+    <mat-label>Select a category</mat-label>
+    <!-- se al mat-select aggiungo la direttiva multiple potrò selezionare più valori, il value restituito sarà un array di stringhe -->
+    <!-- devo però fare attenzione che se è selezionabile anche none ed è selezionata solo questa, con la mutpile choice, il value della select è un array contenente un undefined, quindi non avrei l'errore del required -->
+    <mat-select
+      formControlName="category"
+      placeholder="Select category"
+      multiple
+    >
+      <mat-option>None</mat-option>
+
+      <!-- si utilizza l'elemento mat-optgroup con una label property-->
+      <mat-optgroup label="Beginners">
+        <mat-option value="newprogramming">New to Programming</mat-option>
+        <mat-option value="newjavascript">New to Javascript</mat-option>
+        <mat-option value="newangular">New to Angular</mat-option>
+      </mat-optgroup>
+      <mat-optgroup label="Basic Knowledge">
+        <mat-option value="basicprogramming"
+          >Basic Knowledge of Programming</mat-option
+        >
+        <mat-option value="basicjavascript"
+          >Basic Knowledge of Javascript</mat-option
+        >
+        <mat-option value="basicangular">Basic Knowledge of Angular</mat-option>
+      </mat-optgroup>
+      <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+      <mat-option value="ADVANCED">Advanced</mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="category.errors?.required">
+      Category is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- <span>valore select: {{ valore_select }}</span> -->
+  <!-- valore tramite getter category() -->
+  <!-- {{ category.errors | json }} -->
+  <!-- {{ category["value"][0] == null }} -->
+  <!-- {{ courseType.errors }} -->
 </div>
