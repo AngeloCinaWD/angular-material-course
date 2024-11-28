@@ -11,3 +11,9 @@
 mat-radio-button {
   margin-right: 5px;
 }
+
+// invece di utilizzare ::ng-deep metto la classe css in uno style globale ad esempio in styles.scss
+// ::ng-deep .mat-calendar-body-cell.highlight-date {
+//   background: red;
+//   border-radius: 999px;
+// }

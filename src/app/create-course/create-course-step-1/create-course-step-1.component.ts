@@ -26,10 +26,20 @@ export class CreateCourseStep1Component {
 
   startDate: Date = new Date(1990, 0, 1);
 
+  // implementiamo una funzione che ci permetta di evidenziare alcuni giorni nel calendar
+  // va ad applicare del css, quindi le classi css che vogliamo applicare vanno implemetate nel .css
+  // vogliamo evidenziare tutti i primi del mese
+  // utilizziamo MatCalendarCellClassFunction un afunziona che genera classi per il calendar, questa ha 2 argomenti, il primo è un oggetto Date (in questo caso la data è data da un oggetto JS Date) ed un'altro è la view del datepicker (può essere il mese, l'anno etc)
+  // la funzione viene chiamata per ogni singola cella della view del datepicker ed il valore della cella è dato da cellDate
+  // per applicare questa function si utilizza nel mat-datepicker attraverso la proprietà [dateClass]="dateClass"
+  // la classe css va messa in uno style globale ad esempio in styles.scss, oppure utlizzare ::ng-deep
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     const date = cellDate.getDate();
 
+    console.log(date);
+
     if (view === "month") {
+      // posso mettere più classi "highlight-date seconda terza etc""
       return date === 1 ? "highlight-date" : "";
     }
 

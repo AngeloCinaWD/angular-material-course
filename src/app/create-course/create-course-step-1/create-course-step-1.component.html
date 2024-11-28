@@ -61,10 +61,14 @@
     />
     <!-- per linkare l'input ed il popup in modo da aprirlo e chiuderlo si utilizza il mat-datepicker-toggle -->
     <!-- gli diamo la direttiva matSuffix per visualizzare il toggle all'interno dell'input alla fine e con la direttiva [for]="referenceDaTogglare" gli indichiamo l'elemento che deve essere togglato al click -->
+    <!-- di default l'icona è il calendario -->
     <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+      <!-- per customizzare l'icona del toggle utilizzo una mat-icon con property  matDatepickerToggleIcon-->
+      <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
     </mat-datepicker-toggle>
     <!-- il calendar popup è contenuto in un elemento mat-datepicker, gli diamo una reference template -->
-    <mat-datepicker #releasedAtPicker> </mat-datepicker>
+    <!-- il metodo dateClass non va sottoscritto, va solo indicato -->
+    <mat-datepicker #releasedAtPicker [dateClass]="dateClass"> </mat-datepicker>
 
     <mat-error *ngIf="releasedAt.errors?.required"
       >A released date is required</mat-error
