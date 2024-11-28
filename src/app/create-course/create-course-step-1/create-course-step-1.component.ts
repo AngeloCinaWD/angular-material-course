@@ -8,6 +8,8 @@ import { UntypedFormBuilder, Validators } from "@angular/forms";
   standalone: false,
 })
 export class CreateCourseStep1Component {
+  valore_radio: string = "premium";
+
   form = this.fb.group({
     title: [
       "",
@@ -23,12 +25,12 @@ export class CreateCourseStep1Component {
   constructor(private fb: UntypedFormBuilder) {}
 
   get courseTitle() {
-    console.log(this.form.controls["title"]);
+    // console.log(this.form.controls["title"]);
     return this.form.controls["title"];
   }
 
   get courseType() {
-    console.log(this.form.controls["courseType"]);
+    // console.log(this.form.controls["courseType"]);
 
     return this.form.controls["courseType"];
   }

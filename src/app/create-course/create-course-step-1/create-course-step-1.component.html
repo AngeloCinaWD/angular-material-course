@@ -24,10 +24,17 @@
 
   <!-- RADIO BUTTON mat-radio-group -->
   <!--  courseType -->
-  <mat-radio-group class="course-type" formControlName="courseType">
+  <!-- passaggio valore con ngmodel, in questo modo non si ha il value iniziale passato tramite impostazioni formbuilder, il valore di default viene sovrascritto dalla proprietà con l'ngmodel che è null (se mettessi premium avrei di nuovo un valore di default) -->
+  <mat-radio-group
+    class="course-type"
+    formControlName="courseType"
+    [(ngModel)]="valore_radio"
+  >
     <mat-radio-button value="free">Free</mat-radio-button>
     <mat-radio-button value="premium">Premium</mat-radio-button>
   </mat-radio-group>
 
-  <span>{{ courseType.value }}</span>
+  <span>Valore selezionato tramite radio button: {{ valore_radio }}</span>
+
+  <!-- SELECT DROPDOWN -->
 </div>
