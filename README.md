@@ -40,3 +40,5 @@ Note: **make sure to use command npm start and not ng serve, as npm start adds a
 ## [Fix problem mat-elevation-z class](https://github.com/angular/components/issues/26094#issuecomment-1961507551)
 
 ## [Fix problem mat-elevation-z class 2](https://www.udemy.com/course/angular-material-course/learn/lecture/28651196#questions/19429536)
+
+## [Angular University Blog Data Table](https://blog.angular-university.io/angular-material-data-table/)
