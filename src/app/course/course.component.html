@@ -8,21 +8,18 @@
 </div>
 
 <!-- DATA TABLE -->
-<!-- una table html con direttiva mat-table, la direttiva [dataSource]="proprietà_coi_dati" ci permette di fetchare i dati da mostrare nella tabella sottofrma di array -->
+<!-- per modificare lo style delle colonne della tabella dobbiamo andare a modificare la classe che viene applicata in automatico da material, .mat-column-nome_colonna, il nome colonna è quello definito in matColumnDef degli ng-container -->
+
+<!-- se modifico la classe .mat-mdc-header-cell con una nuova proprietà con !important modifico le celle dell'header -->
+
+<!-- comunque la modifica del css è particolarmente incasinata per via di override e precedenze -->
+
 <table mat-table class="lessons-table" [dataSource]="lessons">
-  <!-- in un ng-container definiamo le 2 parti che devono formare ogni singola colonna: l'header e la parte con le celle -->
-  <!-- la direttiva matColumnDef='nome_colonna' indica la colonna -->
   <ng-container matColumnDef="seqNo">
-    <!-- l'header ha la direttiva mat-header-cell e la direttiva angular *matHeaderCellDef, vanno messe tutte e 2 -->
     <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
-    <!-- ora va definita la cella, direttiva mat-cell e *matCellDef-->
-    <!-- per far capire ad angular dove prendere il dato creiamo una let con un nome che rappresenta l'oggetto all'interno del dataSource che ha le sue proprietà -->
-    <!-- il dataSource è un array contenenti tanti oggetti, ogni oggetto formerà una riga composta da tante celle quante sono le colonne che vogliamo  -->
-    <!-- per il seqNo utilizziamo la proprietà seqNo dell'oggetto presente nell'array lessons -->
     <td mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</td>
   </ng-container>
 
-  <!-- creo le altre 2 colonne, ne indico l'header ed il valore della cella -->
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef>Description</th>
     <td mat-cell *matCellDef="let lesson">{{ lesson.description }}</td>
@@ -35,15 +32,11 @@
     </td>
   </ng-container>
 
-  <!-- definiamo la riga dell'header, direttive mat-header-row e *matHeaderRowDef -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <!-- definiamo la riga, direttive mat-row per il css e *matRowDef per la logica, cioè definiamo cosa deve essere passato ad esempio al click e quali sono le colonne che vanno renderizzate -->
-  <!-- la  let che dichiariamo si riferisce all'oggetto che compone una riga, l'oggetto che fa parte dell'array del dataSource -->
+
   <tr
     mat-row
     *matRowDef="let lesson; columns: displayedColumns"
     (click)="prova(lesson)"
   ></tr>
-
-  <!-- lo schema di una tabella material: il contenitore table riceve un array di oggetti tramite direttiva [dataSource]. un oggetto va a formare una riga, una riga è composta da celle, ogni cella è un valore di una delle proprietà dell'oggetto. Le proprietà dell'oggetto vengono collegate attraverso il nome (la key) ad un nome definito in un array di stringhe in cui sono indicate le colonne che vanno renderizzate, secondo l'ordine con cui vengono inserite in questo array. Ogni colonna è formata da una cella header ed una cella per il valore -->
 </table>

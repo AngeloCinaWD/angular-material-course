@@ -60,6 +60,18 @@ mat-paginator {
   border-right: 1px solid black;
   padding-right: 24px;
   text-align: center;
+  // background rosso alle celle della prima colonna a sinistra (anche quella dell'header)
+  background: red;
+}
+
+.mat-mdc-header-cell {
+  // background blue alle celle dell'header
+  background: blue !important;
+}
+
+.mat-mdc-row {
+  //background verde alle righe tranne la prima colonna a sx
+  background: green;
 }
 
 .mat-column-description {
@@ -69,4 +81,9 @@ mat-paginator {
 
 .mat-column-duration {
   font-style: italic;
+}
+
+.mat-mdc-cell {
+  // bordi arancioni a tutte le celle tranne quelle dell'header
+  border: 1px solid orange;
 }

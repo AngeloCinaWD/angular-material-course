@@ -114,7 +114,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
     private coursesService: CoursesService
   ) {}
 
-  // andiamo ad indicare quale devono essere le colonne da mostrare nella tabella, l'ordine è importante perchè è quello in cui verranno mostrate
+  // nomi colenne per la tabella
   displayedColumns: string[] = ["seqNo", "description", "duration"];
 
   ngOnInit() {
