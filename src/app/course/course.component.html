@@ -37,6 +37,13 @@
 
   <!-- definiamo la riga dell'header, direttive mat-header-row e *matHeaderRowDef -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <!-- definiamo la riga, direttive mat-row per il css e *matRowDef per la logica, cioè definiamo cosa deve essere passato al click e quali sono le colonne che vanno renderizzate -->
-  <tr mat-row *matRowDef="let lesson; columns: displayedColumns"></tr>
+  <!-- definiamo la riga, direttive mat-row per il css e *matRowDef per la logica, cioè definiamo cosa deve essere passato ad esempio al click e quali sono le colonne che vanno renderizzate -->
+  <!-- la  let che dichiariamo si riferisce all'oggetto che compone una riga, l'oggetto che fa parte dell'array del dataSource -->
+  <tr
+    mat-row
+    *matRowDef="let lesson; columns: displayedColumns"
+    (click)="prova(lesson)"
+  ></tr>
+
+  <!-- lo schema di una tabella material: il contenitore table riceve un array di oggetti tramite direttiva [dataSource]. un oggetto va a formare una riga, una riga è composta da celle, ogni cella è un valore di una delle proprietà dell'oggetto. Le proprietà dell'oggetto vengono collegate attraverso il nome (la key) ad un nome definito in un array di stringhe in cui sono indicate le colonne che vanno renderizzate, secondo l'ordine con cui vengono inserite in questo array. Ogni colonna è formata da una cella header ed una cella per il valore -->
 </table>

@@ -122,4 +122,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {}
+
+  prova(value) {
+    console.log(value);
+  }
 }
