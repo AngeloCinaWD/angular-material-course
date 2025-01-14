@@ -32,48 +32,62 @@ import { Lesson } from "../model/lesson";
 export class CourseComponent implements OnInit, AfterViewInit {
   course: Course;
 
-  // lessons è un array di lesson
   lessons: Lesson[] = [];
 
-  // boolean property per mostrare o no lo spinner di caricamento
   isLoading: boolean = false;
+
+  // per far funzionare il paginator dobbiamo intercettare gli events che questo genera al click dei suoi componenti
+  // per farlo, la cosa migliore è utilizzare il ViewChild per creare una template reference
+  // la property è di tipo MatPaginator component, indichiamo ad angular tramite ViewChild di afferrare la prima istanza MatPaginator nel componente
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService
   ) {}
 
-  // nomi colenne per la tabella
   displayedColumns: string[] = ["seqNo", "description", "duration"];
 
   ngOnInit() {
     this.course = this.route.snapshot.data["course"];
 
-    // chiamo un metodo per fetchare le lessons dal DB
     this.loadLessonsPage();
   }
 
-  ngAfterViewInit() {}
+  // per utilizzare una template reference dobbiamo essere sicuri che il componente sia renderizzato
+  // quindi non possiamo richiamarlo nell'OnInit ma per forza qui nell'AfterViewInit
+  ngAfterViewInit() {
+    // il paginator emette un evento PageEvent con tutte le info necessarie alla corretta impaginazione
+    // emette un observable
+    this.paginator.page
+      .pipe(
+        // come side effect dobbiamo effettuare una call http verso il BE con le info per caricare le giuste lessons
+        // non passiamo nessun valore qui perchè possiamo accedere al paginator direttamente nel metodo che chiamiamo
+        tap(() => this.loadLessonsPage())
+      )
+      .subscribe(console.log);
+  }
 
   loadLessonsPage() {
-    // rendiamo visibile lo spinner di caricamento
     this.isLoading = true;
 
-    // chiamo il metodo findLessons implementato nel service
-    // devo passare alcuni parametri per filtrare le lezioni
+    // accedendo al paginator dobbiamo fare attenzione perchè quando questo meotodo è richiamato nell'OnInit non esiste ancora l'oggetto paginator
+    // quindi utilizziamo l'Elvis operator (in js è il nullish coalescing ??) e l'operatore Optional chaining (?.) ed indichiamo un valore di default
     this.coursesService
-      .findLessons(this.course.id, "asc", 0, 3)
+      .findLessons(
+        this.course.id,
+        "asc",
+        this.paginator?.pageIndex ?? 0,
+        this.paginator?.pageSize ?? 3
+      )
       .pipe(
-        // tramite tap operator assegno il valore ritornato dalla chiamata alla property lessons
         tap((lessons) => (this.lessons = lessons)),
-        // gestisco gli eventuali errori
         catchError((err) => {
           console.log("Error loading lessons", err);
           alert("Error loading lessons");
           return throwError(err);
         }),
-        // lo spinner di caricamento non si deve vedere alla fine della call http, qualunque sia la response, sia in caso di errore che di successo
-        // per eesere sicuri di questo utilizziamo l'operatore finalize()
         finalize(() => (this.isLoading = false))
       )
       .subscribe();

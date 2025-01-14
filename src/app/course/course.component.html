@@ -7,15 +7,57 @@
   />
 
   <!-- aggiungo un loading indicator -->
-  <!-- visibile solo quando la property isLoading è true -->
   <div class="spinner-container" *ngIf="isLoading">
     <mat-spinner></mat-spinner>
   </div>
+
+  <!-- DATA TABLE -->
+  <table
+    mat-table
+    class="lessons-table"
+    [dataSource]="lessons"
+    *ngIf="!isLoading"
+  >
+    <ng-container matColumnDef="seqNo">
+      <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
+      <td mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let lesson">{{ lesson.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
+      <td class="duration-cell" mat-cell *matCellDef="let lesson">
+        {{ lesson.duration }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr
+      mat-row
+      *matRowDef="let lesson; columns: displayedColumns"
+      (click)="prova(lesson)"
+    ></tr>
+  </table>
+
+  <!-- componente PAGINATOR -->
+  <!-- la direttiva [pageSize] indica quante righe -->
+  <!-- la direttiva [pageSizeOptions] le opzioni disponibili -->
+  <!-- [length] numero totale di elementi -->
+  <mat-paginator
+    class="mat-mdc-elevation-specific mat-elevation-z8 paginatore"
+    [length]="course?.lessonsCount"
+    [pageSize]="3"
+    [pageSizeOptions]="[3, 5, 10]"
+  ></mat-paginator>
 </div>
 
 <!-- DATA TABLE -->
-<!-- la tabella si vedrà solo alla fine del caricamento dei dati -->
-<table
+<!-- <table
   mat-table
   class="lessons-table"
   [dataSource]="lessons"
@@ -45,4 +87,15 @@
     *matRowDef="let lesson; columns: displayedColumns"
     (click)="prova(lesson)"
   ></tr>
-</table>
+</table> -->
+
+<!-- componente PAGINATOR -->
+<!-- la direttiva [pageSize] indica quante righe -->
+<!-- la direttiva [pageSizeOptions] le opzioni disponibili -->
+<!-- [length] numero totale di elementi -->
+<!-- <mat-paginator
+  class="mat-mdc-elevation-specific mat-elevation-z8"
+  [length]="course?.lessonsCount"
+  [pageSize]="3"
+  [pageSizeOptions]="[3, 5, 10]"
+></mat-paginator> -->
