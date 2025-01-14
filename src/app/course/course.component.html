@@ -5,10 +5,22 @@
     class="course-thumbnail mat-mdc-elevation-specific mat-elevation-z8"
     [src]="course?.iconUrl"
   />
+
+  <!-- aggiungo un loading indicator -->
+  <!-- visibile solo quando la property isLoading è true -->
+  <div class="spinner-container" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>
 
 <!-- DATA TABLE -->
-<table mat-table class="lessons-table" [dataSource]="lessons">
+<!-- la tabella si vedrà solo alla fine del caricamento dei dati -->
+<table
+  mat-table
+  class="lessons-table"
+  [dataSource]="lessons"
+  *ngIf="!isLoading"
+>
   <ng-container matColumnDef="seqNo">
     <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
     <td mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</td>
