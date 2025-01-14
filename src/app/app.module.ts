@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSortModule } from "@angular/material/sort";
+import { MatSort } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { CoursesService } from "./services/courses.service";
@@ -81,6 +82,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSort,
     MatProgressSpinnerModule,
     MatStepperModule,
     MatDialogModule,

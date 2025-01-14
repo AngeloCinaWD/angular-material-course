@@ -12,19 +12,30 @@
   </div>
 
   <!-- DATA TABLE -->
+  <!-- per rendere una tabella di material ordinabile si aggiunge la direttiva matSort -->
+  <!-- la direttiva matSortDisableClear permette di non disabilitare il sorting, cioè senza questa direttiva clicco ed ho sort asc, clicco desc, clicco niente. Con questa direttiva non ho il niente-->
+  <!-- la direttiva matSortActive mi permette di definire una colonna di default per il sort al momento del primo caricamento dei dati -->
+  <!-- la direttiva matSortDirection mi permette di definire l'ordine -->
+  <!-- vanno poi indicate le colonne che si vogliono ordinare -->
+  <!-- per farlo aggiungiamo nell'header la direttiva mat-sort-header, questo aggiungerà visivamente la freccetta nell'header -->
+  <!-- inoltre farà si che al click della freccetta verrà emesso un evento che va intercettato -->
+  <!-- devo togliere l'ngif alla table altrimenti non ho il sort alla renderizzazione perchè la table viene renderizzata solo quando isLoading è false -->
   <table
     mat-table
+    matSort
+    matSortDisableClear
+    matSortActive="seqNo"
+    matSortDirection="asc"
     class="lessons-table"
     [dataSource]="lessons"
-    *ngIf="!isLoading"
   >
     <ng-container matColumnDef="seqNo">
-      <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Seq. No.</th>
       <td mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</td>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
       <td mat-cell *matCellDef="let lesson">{{ lesson.description }}</td>
     </ng-container>
 
@@ -45,9 +56,6 @@
   </table>
 
   <!-- componente PAGINATOR -->
-  <!-- la direttiva [pageSize] indica quante righe -->
-  <!-- la direttiva [pageSizeOptions] le opzioni disponibili -->
-  <!-- [length] numero totale di elementi -->
   <mat-paginator
     class="mat-mdc-elevation-specific mat-elevation-z8 paginatore"
     [length]="course?.lessonsCount"
@@ -55,47 +63,3 @@
     [pageSizeOptions]="[3, 5, 10]"
   ></mat-paginator>
 </div>
-
-<!-- DATA TABLE -->
-<!-- <table
-  mat-table
-  class="lessons-table"
-  [dataSource]="lessons"
-  *ngIf="!isLoading"
->
-  <ng-container matColumnDef="seqNo">
-    <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
-    <td mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Description</th>
-    <td mat-cell *matCellDef="let lesson">{{ lesson.description }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="duration">
-    <th mat-header-cell *matHeaderCellDef>Duration</th>
-    <td class="duration-cell" mat-cell *matCellDef="let lesson">
-      {{ lesson.duration }}
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-  <tr
-    mat-row
-    *matRowDef="let lesson; columns: displayedColumns"
-    (click)="prova(lesson)"
-  ></tr>
-</table> -->
-
-<!-- componente PAGINATOR -->
-<!-- la direttiva [pageSize] indica quante righe -->
-<!-- la direttiva [pageSizeOptions] le opzioni disponibili -->
-<!-- [length] numero totale di elementi -->
-<!-- <mat-paginator
-  class="mat-mdc-elevation-specific mat-elevation-z8"
-  [length]="course?.lessonsCount"
-  [pageSize]="3"
-  [pageSizeOptions]="[3, 5, 10]"
-></mat-paginator> -->
