@@ -61,18 +61,18 @@ mat-paginator {
   padding-right: 24px;
   text-align: center;
   // background rosso alle celle della prima colonna a sinistra (anche quella dell'header)
-  background: red;
+  // background: red;
 }
 
-.mat-mdc-header-cell {
-  // background blue alle celle dell'header
-  background: blue !important;
-}
+// .mat-mdc-header-cell {
+//   // background blue alle celle dell'header
+//   background: blue !important;
+// }
 
-.mat-mdc-row {
-  //background verde alle righe tranne la prima colonna a sx
-  background: green;
-}
+// .mat-mdc-row {
+//   //background verde alle righe tranne la prima colonna a sx
+//   background: green;
+// }
 
 .mat-column-description {
   padding-left: 20px;
@@ -83,7 +83,7 @@ mat-paginator {
   font-style: italic;
 }
 
-.mat-mdc-cell {
-  // bordi arancioni a tutte le celle tranne quelle dell'header
-  border: 1px solid orange;
-}
+// .mat-mdc-cell {
+//   // bordi arancioni a tutte le celle tranne quelle dell'header
+//   border: 1px solid orange;
+// }

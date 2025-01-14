@@ -8,12 +8,6 @@
 </div>
 
 <!-- DATA TABLE -->
-<!-- per modificare lo style delle colonne della tabella dobbiamo andare a modificare la classe che viene applicata in automatico da material, .mat-column-nome_colonna, il nome colonna è quello definito in matColumnDef degli ng-container -->
-
-<!-- se modifico la classe .mat-mdc-header-cell con una nuova proprietà con !important modifico le celle dell'header -->
-
-<!-- comunque la modifica del css è particolarmente incasinata per via di override e precedenze -->
-
 <table mat-table class="lessons-table" [dataSource]="lessons">
   <ng-container matColumnDef="seqNo">
     <th mat-header-cell *matHeaderCellDef>Seq. No.</th>
